@@ -337,13 +337,19 @@ system:
         process:
             _process: not_implemented
     ssh-server:
-        _process: not_implemented
+        _process: unnecessary
         config:
-            _process: not_implemented
+            _process: unnecessary
             enable:
                 _process: not_implemented
             protocol-version:
-                _process: not_implemented
+                _process:
+                    - from: root_system.0
+                      path: ip
+                      regexp: "(?P<value>ssh version 2|ssh)"
+                      map:
+                          "ssh version 2": "V2"
+                          "ssh": "V1"
             rate-limit:
                 _process: not_implemented
             session-limit:
