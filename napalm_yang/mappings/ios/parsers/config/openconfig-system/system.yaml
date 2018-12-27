@@ -345,11 +345,12 @@ system:
             protocol-version:
                 _process:
                     - from: root_system.0
-                      path: ip
-                      regexp: "(?P<value>ssh version 2|ssh)"
+                      path: ip.ssh.version
+                      present: yes
                       map:
-                          "ssh version 2": "V2"
-                          "ssh": "V1"
+                          true: "V2"
+                          false: "V1"
+
             rate-limit:
                 _process: not_implemented
             session-limit:
